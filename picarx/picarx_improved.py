@@ -1,5 +1,5 @@
 
-from logdecorator import log_on_start, log_on_end, log_on_error
+# from logdecorator import log_on_start, log_on_end, log_on_error
 import logging
 import atexit
 import math
@@ -23,9 +23,9 @@ logging.basicConfig(format=logging_format, level=logging.INFO, datefmt="%H:%M:%S
 
 logging.getLogger().setLevel(logging.DEBUG)
 
-@log_on_start(logging.DEBUG, "Message when function starts")
-@log_on_error(logging.DEBUG, "Message when function encounters an error before completing")
-@log_on_end(logging.DEBUG, "Message when function ends successfully")
+# @log_on_start(logging.DEBUG, "Message when function starts")
+# @log_on_error(logging.DEBUG, "Message when function encounters an error before completing")
+# @log_on_end(logging.DEBUG, "Message when function ends successfully")
 
 def constrain(x, min_val, max_val):
     '''
@@ -221,9 +221,9 @@ class Picarx(object):
         return inner_scale, outer_scale
 
 
-    @log_on_start(logging.DEBUG, "Backward() starts")
-    @log_on_error(logging.DEBUG, "Backward() encounters an error before completing")
-    @log_on_end(logging.DEBUG, "Backward() ends successfully")
+    # @log_on_start(logging.DEBUG, "Backward() starts")
+    # @log_on_error(logging.DEBUG, "Backward() encounters an error before completing")
+    # @log_on_end(logging.DEBUG, "Backward() ends successfully")
     def backward(self, speed):
         print("moving backward at ", speed)
         current_angle = self.dir_current_angle
