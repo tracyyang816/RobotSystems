@@ -6,7 +6,7 @@ import sys
 
 def straight_line_test(px):
     print("here")
-    px.dir_current_angle = 30
+    px.set_dir_servo_angle(30)
     px.forward(50)
     time.sleep(1)
     px.stop()
@@ -14,7 +14,7 @@ def straight_line_test(px):
     time.sleep(1)
     px.stop()
 
-    px.dir_current_angle = -10
+    px.set_dir_servo_angle(-10)
     px.forward(50)
     time.sleep(1)
     px.stop()
@@ -28,17 +28,17 @@ def paralell_park_right(px):
     time.sleep(1)
     px.stop()
 
-    px.dir_current_angle = 45
+    px.set_dir_servo_angle(45)
     px.backward(10)
     time.sleep(1)
     px.stop()
 
-    px.dir_current_angle = 0
+    px.set_dir_servo_angle(0)
     px.backward(10)
     time.sleep(1)
     px.stop()
 
-    px.dir_current_angle = -45
+    px.set_dir_servo_angle(-45)
     px.backward(10)
     time.sleep(1)
     px.stop()
@@ -49,17 +49,17 @@ def three_point_parking(px, dir):
         time.sleep(1)
         px.stop()
 
-        px.dir_current_angle = -90
+        px.set_dir_servo_angle(-90)
         px.forward(50)
         time.sleep(1)
         px.stop()
 
-        px.dir_current_angle = 0
+        px.set_dir_servo_angle(0)
         px.backward(50)
         time.sleep(1)
         px.stop()
 
-        px.dir_current_angle = -90
+        px.set_dir_servo_angle(-90)
         px.forward(50)
         px.stop()
 
@@ -68,17 +68,17 @@ def three_point_parking(px, dir):
         time.sleep(1)
         px.stop()
 
-        px.dir_current_angle = 90
+        px.set_dir_servo_angle(90)
         px.forward(50)
         time.sleep(1)
         px.stop()
 
-        px.dir_current_angle = 0
+        px.set_dir_servo_angle(0)
         px.backward(50)
         time.sleep(1)
         px.stop()
 
-        px.dir_current_angle = 90
+        px.set_dir_servo_angle(90)
         px.forward(50)
         px.stop()
 
