@@ -5,8 +5,8 @@ import sys
 
 
 def straight_line_test(px):
-    print("here")
     px.set_dir_servo_angle(30)
+    px.set_dir_servo_angle(0)
     px.forward(50)
     time.sleep(1)
     px.stop()
@@ -15,6 +15,7 @@ def straight_line_test(px):
     px.stop()
 
     px.set_dir_servo_angle(-10)
+    px.set_dir_servo_angle(0)
     px.forward(50)
     time.sleep(1)
     px.stop()
@@ -22,8 +23,11 @@ def straight_line_test(px):
     time.sleep(1)
     px.stop()
 
+    px.set_dir_servo_angle(0)
+
 
 def paralell_park_right(px):
+    px.set_dir_servo_angle(0)
     px.forward(10)
     time.sleep(1)
     px.stop()
@@ -43,7 +47,10 @@ def paralell_park_right(px):
     time.sleep(1)
     px.stop()
 
+    px.set_dir_servo_angle(0)
+
 def three_point_parking(px, dir):
+    px.set_dir_servo_angle(0)
     if dir == "left":
         px.forward(10)
         time.sleep(1)
@@ -61,7 +68,10 @@ def three_point_parking(px, dir):
 
         px.set_dir_servo_angle(-90)
         px.forward(50)
+        time.sleep(1)
         px.stop()
+
+        px.set_dir_servo_angle(0)
 
     if dir == "right":
         px.forward(10)
@@ -80,7 +90,10 @@ def three_point_parking(px, dir):
 
         px.set_dir_servo_angle(90)
         px.forward(50)
+        time.sleep(1)
         px.stop()
+
+        px.set_dir_servo_angle(0)
 
 def main(args):
     cmd = args[0]
