@@ -279,11 +279,11 @@ class Picarx(object):
                 self.set_motor_speed(2, - outer_scale * speed) 
             else: # turning left
                 self.set_motor_speed(1, outer_scale * speed)
-                self.set_motor_speed(2, -1 * inner_scale * speed)
+                self.set_motor_speed(2, -inner_scale * speed)
 
         else:
             self.set_motor_speed(1, speed)
-            self.set_motor_speed(2, -1 * speed)
+            self.set_motor_speed(2, -1*speed)
 
         # logging.debug(speed, current_angle)
 

@@ -55,7 +55,7 @@ def paralell_park(px, dir):
         px.stop()
 
         px.set_dir_servo_angle(-45)
-        px.backward(15)
+        px.backward(16)
         time.sleep(1)
         px.stop()
 
@@ -78,7 +78,7 @@ def paralell_park(px, dir):
         px.stop()
 
         px.set_dir_servo_angle(45)
-        px.backward(15)
+        px.backward(16)
         time.sleep(1)
         px.stop()
 
