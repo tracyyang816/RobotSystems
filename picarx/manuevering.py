@@ -8,9 +8,12 @@ def straight_line_test(px):
     px.set_dir_servo_angle(30)
     px.forward(10)
     time.sleep(1)
+    px.stop()
+
     px.set_dir_servo_angle(0)
     px.forward(50)
     time.sleep(1)
+    
     px.stop()
     px.backward(50)
     time.sleep(1)
@@ -154,7 +157,7 @@ def main():
         if cmd == "1":
             straight_line_test(px)
         elif cmd == "2":
-            input("left or right? ")
+            dir = input ("left or right? ")
             paralell_park(px, dir)
         elif cmd == "3":
             dir = input("left or right? ")
