@@ -5,8 +5,8 @@ import sys
 
 
 def straight_line_test(px):
-    px.set_dir_servo_angle(30)
-    px.forward(5)
+    px.set_dir_servo_angle(10)
+    px.forward(10)
     time.sleep(1)
     px.stop()
 
@@ -14,7 +14,7 @@ def straight_line_test(px):
     px.forward(20)
     time.sleep(1)
     px.stop()
-    
+
     px.backward(50)
     time.sleep(1)
     px.stop()
@@ -22,6 +22,7 @@ def straight_line_test(px):
     px.set_dir_servo_angle(-10)
     px.forward(10)
     time.sleep(1)
+
     px.set_dir_servo_angle(0)
     px.forward(50)
     time.sleep(1)
@@ -40,7 +41,7 @@ def paralell_park(px, dir):
     if dir == "right":
         px.set_dir_servo_angle(0)
         px.forward(10)
-        time.sleep(1)
+        time.sleep(5)
         px.stop()
 
         px.set_dir_servo_angle(45)
@@ -54,7 +55,7 @@ def paralell_park(px, dir):
         px.stop()
 
         px.set_dir_servo_angle(-45)
-        px.backward(8)
+        px.backward(15)
         time.sleep(1)
         px.stop()
 
@@ -63,7 +64,7 @@ def paralell_park(px, dir):
     if dir == "left":
         px.set_dir_servo_angle(0)
         px.forward(10)
-        time.sleep(1)
+        time.sleep(5)
         px.stop()
 
         px.set_dir_servo_angle(-45)
@@ -77,7 +78,7 @@ def paralell_park(px, dir):
         px.stop()
 
         px.set_dir_servo_angle(45)
-        px.backward(8)
+        px.backward(15)
         time.sleep(1)
         px.stop()
 
@@ -105,15 +106,7 @@ def three_point_parking(px, dir):
         time.sleep(1)
         px.stop()
 
-        px.set_dir_servo_angle(0)
-        px.backward(50)
-        time.sleep(1)
-        px.stop()
-
-        px.set_dir_servo_angle(-90)
-        px.forward(20)
-        time.sleep(1)
-        px.stop()
+       
 
         px.set_dir_servo_angle(0)
 
@@ -137,15 +130,7 @@ def three_point_parking(px, dir):
         time.sleep(1)
         px.stop()
 
-        px.set_dir_servo_angle(0)
-        px.backward(50)
-        time.sleep(1)
-        px.stop()
-
-        px.set_dir_servo_angle(90)
-        px.forward(50)
-        time.sleep(1)
-        px.stop()
+    
 
         px.set_dir_servo_angle(0)
 
