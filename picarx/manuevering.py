@@ -42,6 +42,7 @@ def paralell_park(px, dir):
         # px.set_dir_servo_angle(0)
         px.forward(10)
         time.sleep(1)
+        px.stop()
        
 
         px.set_dir_servo_angle(45)
@@ -65,6 +66,7 @@ def paralell_park(px, dir):
         # px.set_dir_servo_angle(0)
         px.forward(10)
         time.sleep(1)
+        px.stop()
 
 
         px.set_dir_servo_angle(-45)
@@ -97,7 +99,7 @@ def three_point_parking(px, dir):
         px.stop()
 
         px.set_dir_servo_angle(0)
-        px.backward(50)
+        px.backward(20)
         time.sleep(1)
         px.stop()
 
@@ -116,17 +118,17 @@ def three_point_parking(px, dir):
         px.stop()
 
         px.set_dir_servo_angle(90)
-        px.forward(50)
+        px.forward(20)
         time.sleep(1)
         px.stop()
 
         px.set_dir_servo_angle(0)
-        px.backward(50)
+        px.backward(20)
         time.sleep(1)
         px.stop()
 
         px.set_dir_servo_angle(90)
-        px.forward(50)
+        px.forward(20)
         time.sleep(1)
         px.stop()
 

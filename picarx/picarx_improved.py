@@ -250,6 +250,7 @@ class Picarx(object):
                 self.set_motor_speed(1, - outer_scale * speed)
                 self.set_motor_speed(2, inner_scale * speed)
         else:
+            print("straight backward")
             self.set_motor_speed(1, -1*speed)
             self.set_motor_speed(2, speed)  
         
@@ -282,6 +283,7 @@ class Picarx(object):
                 self.set_motor_speed(2, -inner_scale * speed)
 
         else:
+            print("straight forward")
             self.set_motor_speed(1, speed)
             self.set_motor_speed(2, -1*speed)
 
