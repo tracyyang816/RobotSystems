@@ -39,7 +39,8 @@ def straight_line_test(px):
 
 def paralell_park(px, dir):
     if dir == "right":
-        # px.set_dir_servo_angle(0)
+        px.set_dir_servo_angle(10)
+        px.set_dir_servo_angle(0)
         px.forward(10)
         time.sleep(1)
         px.stop()
