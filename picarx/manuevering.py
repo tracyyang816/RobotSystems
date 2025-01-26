@@ -6,15 +6,15 @@ import sys
 
 def straight_line_test(px):
     px.set_dir_servo_angle(30)
-    px.forward(10)
+    px.forward(5)
     time.sleep(1)
     px.stop()
 
     px.set_dir_servo_angle(0)
-    px.forward(50)
+    px.forward(20)
     time.sleep(1)
-    
     px.stop()
+    
     px.backward(50)
     time.sleep(1)
     px.stop()
