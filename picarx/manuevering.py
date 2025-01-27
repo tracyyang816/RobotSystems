@@ -6,7 +6,7 @@ import sys
 
 def straight_line_test(px):
     px.set_dir_servo_angle(10)
-    px.forward(10)
+    px.forward(50)
     time.sleep(1)
    
     px.set_dir_servo_angle(0)
@@ -18,7 +18,7 @@ def straight_line_test(px):
     
 
     px.set_dir_servo_angle(-10)
-    px.forward(10)
+    px.forward(50)
     time.sleep(1)
 
     px.set_dir_servo_angle(0)
@@ -28,7 +28,7 @@ def straight_line_test(px):
     px.backward(50)
     time.sleep(1)
  
-    time.stop()
+    px.stop()
     px.set_dir_servo_angle(0)
 
 # allow direction input

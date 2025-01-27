@@ -211,13 +211,13 @@ class Picarx(object):
 
 
     # ackerman steering calculations
-    def ackerman_wheel_speeds(self, base_speed, steering_angle):
+    def ackerman_wheel_speeds(self, steering_angle):
         k = 0.5 
         # define the scaling constant, usually track width/ wheel base 
 
         angle_rad = math.radians(steering_angle)
-        inner_scale = base_speed * (1 - k * math.sin(angle_rad))
-        outer_scale = base_speed * (1 + k * math.sin(angle_rad))
+        inner_scale = 1 - k * math.sin(angle_rad)
+        outer_scale = 1 + k * math.sin(angle_rad)
         return inner_scale, outer_scale
 
 
@@ -248,7 +248,7 @@ class Picarx(object):
                 self.set_motor_speed(1, -1*speed * power_scale)
                 self.set_motor_speed(2, speed )
             '''
-            inner_scale, outer_scale = self.ackerman_wheel_speeds(speed, current_angle)
+            inner_scale, outer_scale = self.ackerman_wheel_speeds(current_angle)
             print(inner_scale, outer_scale)
 
             if current_angle > 0:  # turning right
@@ -288,9 +288,9 @@ class Picarx(object):
             #     self.set_motor_speed(1, speed)
             #     self.set_motor_speed(2, -1*speed * power_scale)
 
-            inner_scale, outer_scale = self.ackerman_wheel_speeds(speed, current_angle)
+            inner_scale, outer_scale = self.ackerman_wheel_speeds(current_angle)
             print(inner_scale, outer_scale)
-            
+
             if current_angle > 0:  # turning right
                 self.set_motor_speed(1, inner_scale * speed)
                 self.set_motor_speed(2, - outer_scale * speed) 
