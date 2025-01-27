@@ -216,9 +216,9 @@ class Picarx(object):
         # define the scaling constant, usually track width/ wheel base 
 
         angle_rad = math.radians(steering_angle)
-        inner_scale = 1 - k * math.sin(angle_rad)
-        outer_scale = 1 + k * math.sin(angle_rad)
-        return inner_scale, outer_scale
+        right_scale = 1 - k * math.sin(angle_rad)
+        left_scale = 1 + k * math.sin(angle_rad)
+        return right_scale, left_scale
 
 
     # @log_on_start(logging.DEBUG, "Backward() starts")
@@ -248,15 +248,14 @@ class Picarx(object):
                 self.set_motor_speed(1, -1*speed * power_scale)
                 self.set_motor_speed(2, speed )
             '''
-            inner_scale, outer_scale = self.ackerman_wheel_speeds(current_angle)
-            print(inner_scale, outer_scale)
+            right_scale, left_scale = self.ackerman_wheel_speeds(current_angle)
 
             if current_angle > 0:  # turning right
-                self.set_motor_speed(1, - outer_scale * speed)
-                self.set_motor_speed(2, inner_scale * speed) 
+                self.set_motor_speed(1, - left_scale * speed)
+                self.set_motor_speed(2, right_scale * speed) 
             else: # turning left
-                self.set_motor_speed(1, - outer_scale * speed)
-                self.set_motor_speed(2, inner_scale * speed)
+                self.set_motor_speed(1, - left_scale * speed)
+                self.set_motor_speed(2, right_scale * speed)
         else:
             self.set_motor_speed(1, -1*speed)
             self.set_motor_speed(2, speed)  
@@ -288,15 +287,15 @@ class Picarx(object):
             #     self.set_motor_speed(1, speed)
             #     self.set_motor_speed(2, -1*speed * power_scale)
 
-            inner_scale, outer_scale = self.ackerman_wheel_speeds(current_angle)
-            print(inner_scale, outer_scale)
+            right_scale, left_scale = self.ackerman_wheel_speeds(current_angle)
+     
 
             if current_angle > 0:  # turning right
-                self.set_motor_speed(1, outer_scale * speed)
-                self.set_motor_speed(2, - inner_scale * speed) 
+                self.set_motor_speed(1, left_scale * speed)
+                self.set_motor_speed(2, - right_scale * speed) 
             else: # turning left
-                self.set_motor_speed(1, outer_scale * speed)
-                self.set_motor_speed(2, -inner_scale * speed)
+                self.set_motor_speed(1, left_scale * speed)
+                self.set_motor_speed(2, -right_scale * speed)
 
         else:
             self.set_motor_speed(1, speed)
