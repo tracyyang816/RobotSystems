@@ -8,17 +8,15 @@ def straight_line_test(px):
     px.set_dir_servo_angle(10)
     px.forward(10)
     time.sleep(1)
-    px.stop()
-  
-
+   
     px.set_dir_servo_angle(0)
     px.forward(20)
     time.sleep(1)
-    px.stop()
+
 
     px.backward(50)
     time.sleep(1)
-    px.stop()
+    
 
     px.set_dir_servo_angle(-10)
     px.forward(10)
@@ -27,10 +25,10 @@ def straight_line_test(px):
     px.set_dir_servo_angle(0)
     px.forward(50)
     time.sleep(1)
-    px.stop()
+  
     px.backward(50)
     time.sleep(1)
-    px.stop()
+ 
 
     px.set_dir_servo_angle(0)
 
@@ -102,7 +100,7 @@ def three_point_parking(px, dir):
 
         px.set_dir_servo_angle(0)
         px.stop()
-        
+
         px.backward(20)
         time.sleep(1)
         px.stop()
