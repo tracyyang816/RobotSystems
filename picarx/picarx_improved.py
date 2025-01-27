@@ -137,6 +137,7 @@ class Picarx(object):
         elif speed < 0:
             direction = -1 * self.cali_dir_value[motor]
         speed = abs(speed)
+        
         # print(f"direction: {direction}, speed: {speed}")
         
         # this scales the speed 
@@ -144,7 +145,9 @@ class Picarx(object):
         if speed != 0:
             speed = int(speed /2 ) + 50
         speed = speed - self.cali_speed_value[motor] '''
-
+        
+        print(self.cali_dir_value)
+        print("debug", speed)
 
         if direction < 0:
             self.motor_direction_pins[motor].high()
@@ -250,7 +253,6 @@ class Picarx(object):
                 self.set_motor_speed(1, - outer_scale * speed)
                 self.set_motor_speed(2, inner_scale * speed)
         else:
-            print("straight backward")
             self.set_motor_speed(1, -1*speed)
             self.set_motor_speed(2, speed)  
         
@@ -283,7 +285,6 @@ class Picarx(object):
                 self.set_motor_speed(2, -inner_scale * speed)
 
         else:
-            print("straight forward", speed)
             self.set_motor_speed(1, speed)
             self.set_motor_speed(2, -1*speed)
 
