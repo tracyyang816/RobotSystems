@@ -39,98 +39,88 @@ def paralell_park(px, dir):
     if dir == "right":
         px.forward(50)
         time.sleep(1)
-        px.stop()
        
         px.set_dir_servo_angle(45)
-        px.backward(10)
+        px.backward(50)
         time.sleep(1)
-        px.stop()
 
         px.set_dir_servo_angle(0)
         px.backward(50)
         time.sleep(1)
-        px.stop()
 
         px.set_dir_servo_angle(-45)
-        px.backward(10)
+        px.backward(50)
         time.sleep(1)
-        px.stop()
 
+        px.stop()
         px.set_dir_servo_angle(0)
     
     if dir == "left":
-        # px.set_dir_servo_angle(0)
+        px.set_dir_servo_angle(0)
         px.forward(50)
         time.sleep(1)
-        px.stop()
+     
 
         px.set_dir_servo_angle(-45)
-        px.backward(10)
+        px.backward(50)
         time.sleep(1)
-        px.stop()
+  
 
         px.set_dir_servo_angle(0)
         px.backward(50)
         time.sleep(1)
-        px.stop()
 
         px.set_dir_servo_angle(45)
-        px.backward(10)
+        px.backward(50)
         time.sleep(1)
-        px.stop()
 
+        px.stop()
         px.set_dir_servo_angle(0)
 
 def three_point_parking(px, dir):
     px.set_dir_servo_angle(0)
     if dir == "left":
-        px.forward(10)
+        px.forward(50)
         time.sleep(1)
-        px.stop()
+    
 
         px.set_dir_servo_angle(-90)
-        px.forward(20)
+        px.forward(50)
         time.sleep(1)
-        px.stop()
 
         px.set_dir_servo_angle(0)
-        px.stop()
-
-        px.backward(20)
+        px.backward(50)
         time.sleep(1)
-        px.stop()
+
 
         px.set_dir_servo_angle(-90)
-        px.forward(20)
+        px.forward(50)
         time.sleep(1)
         px.stop()
-
-       
 
         px.set_dir_servo_angle(0)
 
     if dir == "right":
-        px.forward(10)
+        px.forward(50)
         time.sleep(1)
-        px.stop()
+      
 
         px.set_dir_servo_angle(90)
-        px.forward(20)
+        px.forward(50)
         time.sleep(1)
-        px.stop()
-
+     
         px.set_dir_servo_angle(0)
-        px.backward(20)
+        px.backward(50)
         time.sleep(1)
-        px.stop()
+     
 
         px.set_dir_servo_angle(90)
-        px.forward(20)
+        px.forward(50)
         time.sleep(1)
-        px.stop()
+ 
 
     
-
+        px.stop()
         px.set_dir_servo_angle(0)
 
 def main():
