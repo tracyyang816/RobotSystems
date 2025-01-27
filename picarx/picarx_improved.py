@@ -252,8 +252,8 @@ class Picarx(object):
             print(inner_scale, outer_scale)
 
             if current_angle > 0:  # turning right
-                self.set_motor_speed(1, - inner_scale * speed)
-                self.set_motor_speed(2, outer_scale * speed) 
+                self.set_motor_speed(1, - outer_scale * speed)
+                self.set_motor_speed(2, inner_scale * speed) 
             else: # turning left
                 self.set_motor_speed(1, - outer_scale * speed)
                 self.set_motor_speed(2, inner_scale * speed)
@@ -292,8 +292,8 @@ class Picarx(object):
             print(inner_scale, outer_scale)
 
             if current_angle > 0:  # turning right
-                self.set_motor_speed(1, inner_scale * speed)
-                self.set_motor_speed(2, - outer_scale * speed) 
+                self.set_motor_speed(1, outer_scale * speed)
+                self.set_motor_speed(2, - inner_scale * speed) 
             else: # turning left
                 self.set_motor_speed(1, outer_scale * speed)
                 self.set_motor_speed(2, -inner_scale * speed)
