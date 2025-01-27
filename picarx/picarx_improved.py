@@ -228,6 +228,12 @@ class Picarx(object):
         print("moving backward at ", speed)
         current_angle = self.dir_current_angle
         if current_angle != 0:
+            abs_current_angle = abs(current_angle)
+            if abs_current_angle > self.DIR_MAX:
+                if current_angle > 0:
+                    current_angle = self.DIR_MAX
+                else:
+                    current_angle = -self.DIR_MAX
 
             ''''
             # Original Backward Code 
@@ -243,6 +249,8 @@ class Picarx(object):
                 self.set_motor_speed(2, speed )
             '''
             inner_scale, outer_scale = self.ackerman_wheel_speeds(speed, current_angle)
+            print(inner_scale, outer_scale)
+
             if current_angle > 0:  # turning right
                 self.set_motor_speed(1, - inner_scale * speed)
                 self.set_motor_speed(2, outer_scale * speed) 
@@ -260,6 +268,13 @@ class Picarx(object):
         print("moving forward at ", speed)
         current_angle = self.dir_current_angle
         if current_angle != 0:
+
+            abs_current_angle = abs(current_angle)
+            if abs_current_angle > self.DIR_MAX:
+                if current_angle > 0:
+                    current_angle = self.DIR_MAX
+                else:
+                    current_angle = -self.DIR_MAX
             
             
             # abs_current_angle = abs(current_angle)
@@ -274,6 +289,8 @@ class Picarx(object):
             #     self.set_motor_speed(2, -1*speed * power_scale)
 
             inner_scale, outer_scale = self.ackerman_wheel_speeds(speed, current_angle)
+            print(inner_scale, outer_scale)
+            
             if current_angle > 0:  # turning right
                 self.set_motor_speed(1, inner_scale * speed)
                 self.set_motor_speed(2, - outer_scale * speed) 
