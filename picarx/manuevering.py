@@ -8,6 +8,7 @@ def straight_line_test(px):
     px.set_dir_servo_angle(10)
     px.forward(10)
     time.sleep(1)
+    px.stop()
   
 
     px.set_dir_servo_angle(0)
@@ -74,6 +75,8 @@ def paralell_park(px, dir):
         px.stop()
 
         px.set_dir_servo_angle(0)
+        px.stop()
+
         px.backward(10)
         time.sleep(1)
         px.stop()
@@ -98,6 +101,8 @@ def three_point_parking(px, dir):
         px.stop()
 
         px.set_dir_servo_angle(0)
+        px.stop()
+        
         px.backward(20)
         time.sleep(1)
         px.stop()
