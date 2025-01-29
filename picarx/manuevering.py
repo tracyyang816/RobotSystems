@@ -139,7 +139,7 @@ def line_following(px):
             time.sleep(1)
             
             # go forward
-            px.forward(20)
+            px.forward(30)
             time.sleep(1)
             px.set_dir_servo_angle(0)
             time.sleep(1)
