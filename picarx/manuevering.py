@@ -1,6 +1,9 @@
 import picarx_improved
 import time
 import sys
+from sensor import Sensor
+from interpreter import Interpretor
+from controller import Controller
 
 
 
@@ -123,6 +126,30 @@ def three_point_parking(px, dir):
         px.stop()
         px.set_dir_servo_angle(0)
 
+def line_following(px):
+    sensor = Sensor(px.get_grayscale_data())
+    interpretor = Interpretor(500, "darker") # might adjust these value later
+    controller = Controller(px, 30)
+
+    try:
+        while True:
+            adc_val = sensor.read_sensors()
+            car_pos = interpretor.process(adc_val)
+            controller.drive(car_pos)
+            time.sleep(1)
+            
+            # go forward
+            px.forward(30)
+            time.sleep(1)
+            px.set_dir_servo_angle(0)
+            px.forward(50)
+            time.sleep(1)
+    
+    except KeyboardInterrupt:
+        px.stop()
+
+    
+
 def main():
     px = picarx_improved.Picarx()
 
@@ -136,6 +163,8 @@ def main():
         elif cmd == "3":
             dir = input("left or right? ")
             three_point_parking(px, dir)
+        elif cmd == "4":
+            line_following(px)
         elif cmd == "q":
             break
         else:
