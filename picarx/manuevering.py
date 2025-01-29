@@ -139,10 +139,9 @@ def line_following(px):
             time.sleep(1)
             
             # go forward
-            px.forward(30)
+            px.forward(20)
             time.sleep(1)
             px.set_dir_servo_angle(0)
-            px.forward(50)
             time.sleep(1)
     
     except KeyboardInterrupt:
