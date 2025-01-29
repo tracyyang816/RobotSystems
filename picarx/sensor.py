@@ -1,5 +1,6 @@
 
-from sim_robot_hat import ADC
+from robot_hat import ADC
+
 class Sensor():
     def __init__(self, adc_channels = ['A0', 'A1', 'A2']):
         # self.adcs = adc_channels
