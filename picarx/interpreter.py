@@ -37,6 +37,8 @@ class Interpretor():
             position = 1.0 
         elif falling_edge == 1:
             position = -0.5
+        else:
+            position = None
 
         return position
 

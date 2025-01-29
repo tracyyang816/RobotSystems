@@ -6,6 +6,10 @@ class Controller():
         self.scalar = scalar
     
     def drive(self, position):
-        angle = position * self.scalar
-        self.px.set_dir_servo_angle(angle)
+        if position == None:
+            # then we need to go find the line
+            self.px.stop()
+        else:
+            angle = position * self.scalar
+            self.px.set_dir_servo_angle(angle)
         return angle
