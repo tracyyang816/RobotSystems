@@ -1,4 +1,4 @@
-from picarx_improved import Picarx
+
 
 class Controller():
     def __init__(self, px, scalar = 30):

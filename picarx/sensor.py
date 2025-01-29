@@ -1,5 +1,4 @@
 
-from sim_robot_hat import ADC
 
 class Sensor():
     def __init__(self, adc_channels):
