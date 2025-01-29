@@ -127,7 +127,7 @@ def three_point_parking(px, dir):
         px.set_dir_servo_angle(0)
 
 def line_following(px):
-    sensor = Sensor(px.get_grayscale_data())
+    sensor = Sensor() # px.get_grayscale_data()
     interpretor = Interpretor(500, "darker") # might adjust these value later
     controller = Controller(px, 30)
 
