@@ -1,7 +1,7 @@
 
 
 class Controller():
-    def __init__(self, px, scalar = 30):
+    def __init__(self, px, scalar = 10):
         self.px = px
         self.scalar = scalar
         self.angle = 0

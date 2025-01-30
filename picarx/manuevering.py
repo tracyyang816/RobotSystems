@@ -128,8 +128,8 @@ def three_point_parking(px, dir):
 
 def line_following(px):
     sensor = Sensor() # px.get_grayscale_data()
-    interpretor = Interpretor(100, "darker") # might adjust these value later
-    controller = Controller(px, 30)
+    interpretor = Interpretor(400, "darker") # might adjust these value later
+    controller = Controller(px, 10)
 
     try:
         while True:
