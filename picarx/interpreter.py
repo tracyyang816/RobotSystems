@@ -40,6 +40,7 @@ class Interpretor():
         else:
             position = None
 
+        print(rising_edge, position)
         return position
 
 
