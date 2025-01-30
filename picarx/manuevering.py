@@ -141,7 +141,7 @@ def line_following(px):
             time.sleep(1)
 
             px.forward(30)
-            time.sleep(0.05)
+            time.sleep(0.3)
             px.stop()
             
     
