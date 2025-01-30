@@ -138,7 +138,7 @@ def line_following(px):
             controller.drive(car_pos)
             time.sleep(1)
             # go forward
-            px.forward(0)
+            px.forward(30)
             time.sleep(0.05)
     
     except KeyboardInterrupt:
