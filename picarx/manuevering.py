@@ -130,11 +130,13 @@ def line_following(px):
     sensor = Sensor() # px.get_grayscale_data()
     interpretor = Interpretor(100, "darker") # might adjust these value later
     controller = Controller(px, 30)
+    prev_pos = 0
 
     try:
         while True:
             adc_val = sensor.read_sensors()
-            car_pos = interpretor.process(adc_val)
+            car_pos = interpretor.process(adc_val, prev_pos)
+            prev_pos = car_pos
             controller.drive(car_pos)
             time.sleep(1)
 
