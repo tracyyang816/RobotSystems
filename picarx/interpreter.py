@@ -38,7 +38,7 @@ class Interpretor():
             elif min_sensor == 0:
                 position = min_sensor_val/ (min_sensor_val + sensor_values[1]) - 1
             
-            elif max_sensor == 2:
+            elif min_sensor == 2:
                 position = 1 - min_sensor_val/ (min_sensor_val + sensor_values[1]) 
             
         print(sensor_values, max_sensor, position)
