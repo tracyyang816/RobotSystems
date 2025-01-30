@@ -15,7 +15,7 @@ class Interpretor():
         max_sensor_val = max(sensor_values)
         max_sensor = sensor_values.index(max_sensor_val)
 
-        if self.polarity == "darker":
+        if self.polarity == "lighter":
 
             if max_sensor == 1:
                 position = 0
@@ -26,6 +26,21 @@ class Interpretor():
             elif max_sensor == 2:
                 position = (max_sensor_val - sensor_values[1])/max_sensor_val
         
+
+        min_sensor_val = min(sensor_values)
+        min_sensor = sensor_values.index(min_sensor_val)
+
+        if self.polarity == "darker":
+
+            if min_sensor == 1:
+                position = 0
+            
+            elif min_sensor == 0:
+                position = min_sensor_val/ (min_sensor_val + sensor_values[1]) - 1
+            
+            elif max_sensor == 2:
+                position = 1 - min_sensor_val/ (min_sensor_val + sensor_values[1]) 
+            
         print(sensor_values, max_sensor, position)
         return position
 
