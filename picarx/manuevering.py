@@ -138,9 +138,8 @@ def line_following(px):
             car_pos = interpretor.process(adc_val, prev_pos)
             prev_pos = car_pos
             controller.drive(car_pos)
-            time.sleep(1)
 
-            px.forward(30)
+            px.forward(50)
             time.sleep(0.3)
             px.stop()
             
