@@ -26,7 +26,7 @@ class Interpretor():
             elif max_sensor == 2:
                 position = (max_sensor_val - sensor_values[1])/max_sensor_val
         
-        print(max_sensor, position)
+        print(sensor_values, max_sensor, position)
         return position
 
         '''
