@@ -9,10 +9,31 @@ class Interpretor():
         # if polarity == "lighter", line is lighter
     
     def process(self, sensor_values): # sensor_vals is a list of 3 adc values
-        rising_edge = None
-        falling_edge = None
+        
+        position = None
+        
+        max_sensor_val = max(sensor_values)
+        max_sensor = sensor_values.index(max_sensor_val)
+
+        if self.polarity == "darker":
+
+            if max_sensor == 1:
+                position = 0
+            
+            elif max_sensor == 0:
+                position = -(max_sensor_val - sensor_values[1])/max_sensor_val
+            
+            elif max_sensor == 2:
+                position = (max_sensor_val - sensor_values[1])/max_sensor_val
+
+        return position
+
+        '''
         for i in range(0, 2):
-            diff = sensor_values[i] -sensor_values[i+1]
+            diff = sensor_values[i] - sensor_values[i+1]
+
+            rising_edge = None
+            falling_edge = None
 
             if self.polarity == "darker":
                 if diff < -self.sensitivity: 
@@ -42,6 +63,6 @@ class Interpretor():
 
         print(rising_edge, position)
         return position
-
+        '''
 
 
