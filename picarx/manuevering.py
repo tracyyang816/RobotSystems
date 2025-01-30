@@ -128,17 +128,16 @@ def three_point_parking(px, dir):
 
 def line_following(px):
     sensor = Sensor() # px.get_grayscale_data()
-    interpretor = Interpretor(400, "darker") # might adjust these value later
-    controller = Controller(px, 10)
+    interpretor = Interpretor(100, "darker") # might adjust these value later
+    controller = Controller(px, 30)
 
     try:
         while True:
             adc_val = sensor.read_sensors()
             car_pos = interpretor.process(adc_val)
             controller.drive(car_pos)
-            time.sleep(1)
-            # go forward
-            px.forward(30)
+
+            px.forward(10)
             time.sleep(0.05)
     
     except KeyboardInterrupt:
