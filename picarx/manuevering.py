@@ -139,7 +139,7 @@ def line_following(px):
             prev_pos = car_pos
             controller.drive(car_pos)
 
-            px.forward(50)
+            px.forward(30)
             time.sleep(0.3)
             px.stop()
             
