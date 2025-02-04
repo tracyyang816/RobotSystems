@@ -137,6 +137,7 @@ def line_following(px):
             adc_val = sensor.read_sensors()
             car_pos = interpretor.process(adc_val, prev_pos)
             prev_pos = car_pos
+            # if no line is detected, pos would be the same so is the steering angle
             controller.drive(car_pos)
 
             px.forward(30)
