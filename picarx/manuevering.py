@@ -140,9 +140,9 @@ def line_following(px):
             # if no line is detected, pos would be the same so is the steering angle
             controller.drive(car_pos)
 
-            px.forward(30)
-            time.sleep(0.2)
-            px.stop()
+            # px.forward(30)
+            # time.sleep(0.2)
+            # px.stop()
             
     
     except KeyboardInterrupt:

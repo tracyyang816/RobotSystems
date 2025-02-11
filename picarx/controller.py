@@ -1,4 +1,4 @@
-
+import time
 
 class Controller():
     def __init__(self, px, scalar = 10):
@@ -17,4 +17,9 @@ class Controller():
             angle = position * self.scalar
             self.px.set_dir_servo_angle(angle)
             self.angle = angle
+        
+        self.px.forward(30)
+        time.sleep(0.2)
+        self.px.stop()
+
         return angle
