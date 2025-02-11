@@ -64,7 +64,7 @@ class Picarx(object):
                 ):
 
         # reset robot_hat
-        utils.reset_mcu()
+        # utils.reset_mcu()
         time.sleep(0.2)
         atexit.register(self.stop)
 

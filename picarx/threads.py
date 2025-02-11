@@ -56,10 +56,6 @@ def interpreter_function(adc_bus, pos_bus, delay): # consumer_producer
 
 
 
-
-
-
-# Exception handle function
 def handle_exception(future):
     exception = future.exception()
     if exception:
