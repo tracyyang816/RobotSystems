@@ -13,7 +13,3 @@ class Sensor():
     
     def read_sensors(self):
         return [adc.read() for adc in self.adcs]
-
-
-    # def read_voltages(self):
-    #     return [adc.read_voltage() for adc in self.adcs]
