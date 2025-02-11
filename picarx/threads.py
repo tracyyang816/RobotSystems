@@ -12,9 +12,15 @@ from threading import Event
 
 
 px = picarx_improved.Picarx()
+
 sensor = Sensor()
 controller = Controller(px, 30)
 interpretor = Interpretor(100, "darker")
+
+sensor_values_bus = Bus()
+interpreter_bus = Bus()
+
+
 
 def sensor_function(adc_bus, delay): # producer
     
@@ -57,10 +63,10 @@ def handle_exception(future):
     if exception:
         print(f"Exception in worker thread: {exception}")
 
-
 '''
 # Define robot task
 def robot_task(i):
+
     print("Starting robot task", i)
     while not shutdown_event.is_set():
         # Run some robot task...
@@ -72,30 +78,29 @@ def robot_task(i):
         # Test exception
     if i == 1:
         raise Exception("Robot task 1 raised an exception")
-
 '''
 
 
-
 if __name__ == "__main__":
-    sensor_values_bus = Bus()
-    interpreter_bus = Bus()
-
+    
+    '''
+    futures = []
+    with ThreadPoolExecutor(max_workers=3) as executor:
+        for i in range(3):
+            # Spawn task threads
+            future = executor.submit(robot_task, i)
+            # Add exception call back
+            future.add_done_callback(handle_exception)
+            futures.append(future)'''
     with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
         eSensor = executor.submit(sensor_function, sensor_values_bus, 1)
         eInterpreter = executor.submit(interpreter_function,sensor_values_bus, interpreter_bus,1)
         eController = executor.submit(controller_function, interpreter_bus, 1)
 
-    
-    robot_tasks = [eSensor, eInterpreter, eController]
-    futures = []
-    with ThreadPoolExecutor(max_workers=3) as executor:
-        for i in range(3):
-            # Spawn task threads
-            future = robot_tasks[i]
-            # Add exception call back
-            future.add_done_callback(handle_exception)
-            futures.append(future)
+        eSensor.add_done_callback(handle_exception)
+        eInterpreter.add_done_callback(handle_exception)
+        eController.add_done_callback(handle_exception)
+
         try:
             # Keep the main thread running to response for the kill signal
             while not shutdown_event.is_set():
