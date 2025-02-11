@@ -12,9 +12,12 @@ from threading import Event
 
 
 px = picarx_improved.Picarx()
+sensor = Sensor()
+controller = Controller(px, 30)
+interpretor = Interpretor(100, "darker")
 
 def sensor_function(adc_bus, delay): # producer 
-    sensor = Sensor()
+    
     while True:
         adc_val = sensor.read_sensors()
         adc_bus.write(adc_val)
@@ -23,7 +26,7 @@ def sensor_function(adc_bus, delay): # producer
     
 
 def controller_function(pos_bus, delay): # consumer 
-    controller = Controller(px, 30)
+    
     while True:
         pos = pos_bus.read()
         controller.drive(pos)
@@ -32,7 +35,7 @@ def controller_function(pos_bus, delay): # consumer
 
 
 def interpreter_function(adc_bus, pos_bus, delay): # consumer_producer
-    interpretor = Interpretor(100, "darker")
+    
     while True:
         adc_val = adc_bus.read()
         pos = interpretor.process(adc_val, pos_bus.read())
