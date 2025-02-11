@@ -20,6 +20,9 @@ interpretor = Interpretor(100, "darker")
 sensor_values_bus = Bus()
 interpreter_bus = Bus()
 
+# Define shutdown event
+shutdown_event = Event()
+
 
 
 def sensor_function(adc_bus, delay): # producer
@@ -54,14 +57,14 @@ def interpreter_function(adc_bus, pos_bus, delay): # consumer_producer
 
 
 
-# Define shutdown event
-shutdown_event = Event()
+
 
 # Exception handle function
 def handle_exception(future):
     exception = future.exception()
     if exception:
         print(f"Exception in worker thread: {exception}")
+        shutdown_event.set()
 
 '''
 # Define robot task
@@ -92,6 +95,7 @@ if __name__ == "__main__":
             # Add exception call back
             future.add_done_callback(handle_exception)
             futures.append(future)'''
+
     with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
         eSensor = executor.submit(sensor_function, sensor_values_bus, 1)
         eInterpreter = executor.submit(interpreter_function,sensor_values_bus, interpreter_bus,1)
