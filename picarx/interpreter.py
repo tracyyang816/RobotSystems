@@ -12,9 +12,11 @@ class Interpreter():
     
     def process(self, sensor_values): # sensor_vals is a list of 3 adc values
 
-        sensor_values = ast.literal_eval(sensor_values)
         if sensor_values == "0":
             return 0
+            
+        sensor_values = ast.literal_eval(sensor_values)
+        
 
         line = False
         for i in range(0, 2):
