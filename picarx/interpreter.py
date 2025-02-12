@@ -5,14 +5,15 @@ class Interpretor():
     def __init__(self, sensitivity, polarity):
         self.sensitivity = sensitivity 
         self.polarity = polarity
+        self.pos = 0
 
         # if polarity == "darker", line is darker
         # if polarity == "lighter", line is lighter
     
-    def process(self, sensor_values, prev_pos): # sensor_vals is a list of 3 adc values
+    def process(self, sensor_values): # sensor_vals is a list of 3 adc values
 
         sensor_values = ast.literal_eval(sensor_values)
-        prev_pos = float(prev_pos)
+        
 
         line = False
         for i in range(0, 2):
@@ -21,7 +22,7 @@ class Interpretor():
                 line = True
 
         if line == False:
-            position = prev_pos
+            position = self.pos
 
         else: 
         
@@ -57,6 +58,7 @@ class Interpretor():
                     position = 1 - min_sensor_val/ (min_sensor_val + sensor_values[1]) 
                 
             print(sensor_values,min_sensor, position)
+            self.pos = position
             return position
         '''
         for i in range(0, 2):

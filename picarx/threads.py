@@ -50,7 +50,7 @@ def interpreter_function(adc_bus, pos_bus, delay): # consumer_producer
     while not shutdown_event.is_set():
         print("interpreter read and write")
         adc_val = adc_bus.read()
-        pos = interpretor.process(adc_val, pos_bus.read())
+        pos = interpretor.process(adc_val)
         pos_bus.write(pos)
         time.sleep(delay)
 
