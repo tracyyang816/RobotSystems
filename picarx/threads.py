@@ -93,13 +93,17 @@ if __name__ == "__main__":
             futures.append(future)'''
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
-        eSensor = executor.submit(sensor_function, sensor_values_bus, 1)
-        eInterpreter = executor.submit(interpreter_function,sensor_values_bus, interpreter_bus,1)
-        eController = executor.submit(controller_function, interpreter_bus, 1)
-
-        eSensor.add_done_callback(handle_exception)
-        eInterpreter.add_done_callback(handle_exception)
-        eController.add_done_callback(handle_exception)
+        for i in range(3):
+            match i:
+                case 1: 
+                    eSensor = executor.submit(sensor_function, sensor_values_bus, 1)
+                    eSensor.add_done_callback(handle_exception)
+                case 2:
+                    eInterpreter = executor.submit(interpreter_function,sensor_values_bus, interpreter_bus,1)
+                    eInterpreter.add_done_callback(handle_exception)
+                case 3:
+                    eController = executor.submit(controller_function, interpreter_bus, 1)
+                    eController.add_done_callback(handle_exception)
 
         try:
             # Keep the main thread running to response for the kill signal
