@@ -2,7 +2,7 @@ import picarx_improved
 import time
 import sys
 from sensor import Sensor
-from interpreter import Interpretor
+from interpreter import Interpreter
 from controller import Controller
 from bus import Bus
 import concurrent.futures
@@ -15,7 +15,7 @@ px = picarx_improved.Picarx()
 
 sensor = Sensor()
 controller = Controller(px, 30)
-interpretor = Interpretor(100, "darker")
+interpretor = Interpreter(100, "darker")
 
 sensor_values_bus = Bus()
 interpreter_bus = Bus()

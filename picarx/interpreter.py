@@ -1,7 +1,7 @@
 
 import ast 
 
-class Interpretor():
+class Interpreter():
     def __init__(self, sensitivity, polarity):
         self.sensitivity = sensitivity 
         self.polarity = polarity
