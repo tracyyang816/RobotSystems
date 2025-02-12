@@ -93,15 +93,15 @@ if __name__ == "__main__":
             futures.append(future)'''
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
-        for i in range(3):
+        for i in range(0, 3):
             match i:
-                case 1: 
+                case 0: 
                     eSensor = executor.submit(sensor_function, sensor_values_bus, 1)
                     eSensor.add_done_callback(handle_exception)
-                case 2:
+                case 1:
                     eInterpreter = executor.submit(interpreter_function,sensor_values_bus, interpreter_bus,1)
                     eInterpreter.add_done_callback(handle_exception)
-                case 3:
+                case 2:
                     eController = executor.submit(controller_function, interpreter_bus, 1)
                     eController.add_done_callback(handle_exception)
 
