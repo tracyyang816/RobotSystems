@@ -7,6 +7,7 @@ class Controller():
         self.angle = 0
     
     def drive(self, position):
+        position = float(position)
         if position == None:
             # then we need to go find the line
             self.px.stop()

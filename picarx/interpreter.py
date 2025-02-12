@@ -1,4 +1,5 @@
 
+import ast 
 
 class Interpretor():
     def __init__(self, sensitivity, polarity):
@@ -10,7 +11,9 @@ class Interpretor():
     
     def process(self, sensor_values, prev_pos): # sensor_vals is a list of 3 adc values
 
-        
+        sensor_values = ast.literal_eval(sensor_values)
+        prev_pos = float(prev_pos)
+
         line = False
         for i in range(0, 2):
             diff = abs(sensor_values[i] - sensor_values[i+1])
