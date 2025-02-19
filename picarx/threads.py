@@ -62,35 +62,9 @@ def handle_exception(future):
         print(f"Exception in worker thread: {exception}")
         shutdown_event.set()
 
-'''
-# Define robot task
-def robot_task(i):
-
-    print("Starting robot task", i)
-    while not shutdown_event.is_set():
-        # Run some robot task...
-
-        print("Running robot task", i)
-        time.sleep(1)
-        # Print shut down message
-        print("Shutting down robot task", i)
-        # Test exception
-    if i == 1:
-        raise Exception("Robot task 1 raised an exception")
-'''
-
 
 if __name__ == "__main__":
     
-    '''
-    futures = []
-    with ThreadPoolExecutor(max_workers=3) as executor:
-        for i in range(3):
-            # Spawn task threads
-            future = executor.submit(robot_task, i)
-            # Add exception call back
-            future.add_done_callback(handle_exception)
-            futures.append(future)'''
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
         for i in range(0, 3):
