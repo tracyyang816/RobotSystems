@@ -37,6 +37,7 @@ def get_steering_angle(lines, img_width):
     else:
         avg_steering_angle = 0
 
+    print(avg_steering_angle)
     return int(avg_steering_angle)
 
 

@@ -70,13 +70,13 @@ if __name__ == "__main__":
         for i in range(0, 3):
             match i:
                 case 0: 
-                    eSensor = executor.submit(sensor_function, sensor_values_bus, 0.5)
+                    eSensor = executor.submit(sensor_function, sensor_values_bus, 0.25)
                     eSensor.add_done_callback(handle_exception)
                 case 1:
-                    eInterpreter = executor.submit(interpreter_function,sensor_values_bus, interpreter_bus,0.5)
+                    eInterpreter = executor.submit(interpreter_function,sensor_values_bus, interpreter_bus,0.25)
                     eInterpreter.add_done_callback(handle_exception)
                 case 2:
-                    eController = executor.submit(controller_function, interpreter_bus, 1)
+                    eController = executor.submit(controller_function, interpreter_bus, 0.5)
                     eController.add_done_callback(handle_exception)
 
         try:
