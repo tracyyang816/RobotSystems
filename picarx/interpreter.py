@@ -22,7 +22,7 @@ class Interpreter():
                 line = True
 
         if line == False:
-            position = -self.pos
+            position = self.pos
 
         else: 
         

@@ -5,21 +5,34 @@ class Controller():
     def __init__(self, px, scalar = 10):
         self.px = px
         self.scalar = scalar
-        # self.angle = 0
+        self.no_line = 0
     
     def drive(self, position, has_line):
         
         if has_line == False:
+            self.no_line += 1
             # then we need to go find the line
             print("no line")
-            angle = random.choice([-30, 30])
 
-            # position = float(position)
-            # angle = position * self.scalar
+            position = float(position)
+            angle = position * self.scalar
             self.px.set_dir_servo_angle(angle)
             self.px.forward(10)
             time.sleep(0.02)
             self.px.stop()
+
+            if self.no_line > 5:
+                self.px.set_dir_servo_angle(-angle)
+                self.px.forward(10)
+                time.sleep(0.02)
+                self.px.stop()
+            
+            else: 
+                self.no_line = 0
+                self.px.set_dir_servo_angle(angle)
+                self.px.forward(10)
+                time.sleep(0.02)
+                self.px.stop()
             
 
             # angle = 0
