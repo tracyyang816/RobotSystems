@@ -22,7 +22,7 @@ class Interpreter():
                 line = True
 
         if line == False:
-            position = self.pos
+            position = -self.pos
 
         else: 
         
@@ -64,7 +64,7 @@ class Interpreter():
 
 
 
-        
+
         '''
         for i in range(0, 2):
             diff = sensor_values[i] - sensor_values[i+1]
