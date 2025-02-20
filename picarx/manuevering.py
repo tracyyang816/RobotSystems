@@ -2,7 +2,7 @@ import picarx_improved
 import time
 import sys
 from sensor import Sensor
-from interpreter import Interpretor
+from interpreter import Interpreter
 from controller import Controller
 
 
@@ -128,7 +128,7 @@ def three_point_parking(px, dir):
 
 def line_following(px):
     sensor = Sensor() # px.get_grayscale_data()
-    interpretor = Interpretor(100, "darker") # might adjust these value later
+    interpretor = Interpreter(100, "darker") # might adjust these value later
     controller = Controller(px, 30)
     # prev_pos = 0
 
