@@ -1,4 +1,5 @@
 import time
+import random 
 
 class Controller():
     def __init__(self, px, scalar = 10):
@@ -11,8 +12,7 @@ class Controller():
         if has_line == False:
             # then we need to go find the line
             print("no line")
-            position = float(position)
-            angle = position * self.scalar
+            angle = random.randint(-30, 30)
             self.px.set_dir_servo_angle(angle)
             self.px.stop()
             
