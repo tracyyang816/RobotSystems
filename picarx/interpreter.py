@@ -26,7 +26,6 @@ class Interpreter():
 
         else: 
         
-            
             max_sensor_val = max(sensor_values)
             max_sensor = sensor_values.index(max_sensor_val)
 
