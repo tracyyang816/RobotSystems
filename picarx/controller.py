@@ -23,14 +23,14 @@ class Controller():
 
             if self.no_line > 5:
                 self.px.set_dir_servo_angle(-angle)
-                self.px.forward(10)
+                self.px.forward(30)
                 time.sleep(0.02)
                 self.px.stop()
             
             else: 
                 self.no_line = 0
                 self.px.set_dir_servo_angle(angle)
-                self.px.forward(10)
+                self.px.forward(30)
                 time.sleep(0.02)
                 self.px.stop()
             
