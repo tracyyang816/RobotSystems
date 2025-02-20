@@ -7,13 +7,14 @@ class Controller():
         self.angle = 0
     
     def drive(self, position):
-        position = float(position)
+        
         if position == None:
             # then we need to go find the line
             self.px.stop()
             angle = 0
 
             self.px.set_dir_servo_angle(self.angle)
+            position = float(position)
         else:
             angle = position * self.scalar
             self.px.set_dir_servo_angle(angle)
