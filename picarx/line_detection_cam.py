@@ -73,6 +73,7 @@ time.sleep(2)
 
 
 px = picarx_improved.Picarx()
+px.set_cam_tilt_angle(-35)
 
 
 
