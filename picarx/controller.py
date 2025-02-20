@@ -10,10 +10,11 @@ class Controller():
         
         if has_line == False:
             # then we need to go find the line
-            self.px.stop()
+            print("no line")
             position = float(position)
             angle = position * self.scalar
             self.px.set_dir_servo_angle(angle)
+            self.px.stop()
             
 
             # angle = 0
