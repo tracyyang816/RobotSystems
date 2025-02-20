@@ -62,7 +62,7 @@ def get_steering_angle(frame):
     angle_to_mid_radian = math.atan(x_offset / y_offset)
     angle_to_mid_deg = int(angle_to_mid_radian * 180.0 / math.pi)
 
-    return angle_to_mid_deg
+    return -angle_to_mid_deg
 
 
 
