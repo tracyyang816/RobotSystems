@@ -3,42 +3,66 @@ import cv2
 from picamera2 import Picamera2, Preview
 import time
 import picarx_improved
+import math
 
-def get_steering_angle(lines, img_width):
+def get_steering_angle(frame):
+  
+    # Convert frame to HSV and create a mask for lane colors
+    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+    min_hue = np.array([60, 40, 40])
+    max_hue = np.array([150, 255, 255])
+    mask = cv2.inRange(hsv, min_hue, max_hue)
+
+    # Apply edge detection
+    edges = cv2.Canny(mask, 200, 400)
+
+    # Detect line segments using Hough Transform
+    segments = cv2.HoughLinesP(edges, 1, np.pi / 180, 10, minLineLength=10, maxLineGap=50)
+
+    # Lane detection parameters
+    left_fit = []
+    right_fit = []
+    height, width, _ = frame.shape
+    boundary = 1 / 3
+    left_region_boundary = width * (1 - boundary)
+    right_region_boundary = width * boundary
+
+    # Filter detected lines into left and right lanes
+    if segments is not None:
+        for segment in segments:
+            for x1, y1, x2, y2 in segment:
+                if x1 == x2:
+                    continue  # Ignore vertical lines
+                slope, intercept = np.polyfit((x1, x2), (y1, y2), 1)
+                
+                if slope < 0 and x1 < left_region_boundary and x2 < left_region_boundary:
+                    left_fit.append((slope, intercept))
+                elif slope > 0 and x1 > right_region_boundary and x2 > right_region_boundary:
+                    right_fit.append((slope, intercept))
+
+    # Compute average lane line
+    lanes = []
+    if left_fit:
+        left_fit_avg = np.average(left_fit, axis=0)
+        lanes.append(left_fit_avg)
+    if right_fit:
+        right_fit_avg = np.average(right_fit, axis=0)
+        lanes.append(right_fit_avg)
+
+    # Compute steering angle
+    if not lanes:
+        return 90  # Default to straight if no lanes detected
+
+    slope, intercept = lanes[0]  # Use first detected lane for angle calculation
+    y1, y2 = height, int(height / 2)
+    x1, x2 = int((y1 - intercept) / slope), int((y2 - intercept) / slope)
     
-    # calculate the steering angle based on lines detected 
+    x_offset = x2 - x1
+    y_offset = y2
+    angle_to_mid_radian = math.atan(x_offset / y_offset)
+    angle_to_mid_deg = int(angle_to_mid_radian * 180.0 / math.pi)
 
-    if lines is None:
-        return 0  # Go straight for now
-
-    left_lines = []
-    right_lines = []
-
-    for line in lines:
-        for rho, theta in line:
-            angle = np.degrees(theta)
-            if 30 < angle < 60:  # Right lane lines
-                right_lines.append((rho, theta))
-            elif 120 < angle < 150:  # Left lane lines
-                left_lines.append((rho, theta))
-
-    if not left_lines and not right_lines:
-        return 0  # No strong lane markings detected
-
-    avg_left_angle = np.mean([np.degrees(theta) for _, theta in left_lines]) if left_lines else None
-    avg_right_angle = np.mean([np.degrees(theta) for _, theta in right_lines]) if right_lines else None
-
-    if avg_left_angle and avg_right_angle:
-        avg_steering_angle = (avg_left_angle + avg_right_angle) / 2 - 90
-    elif avg_left_angle:
-        avg_steering_angle = avg_left_angle - 90
-    elif avg_right_angle:
-        avg_steering_angle = avg_right_angle - 90
-    else:
-        avg_steering_angle = 0
-
-    print(avg_steering_angle)
-    return int(avg_steering_angle)
+    return angle_to_mid_deg
 
 
 

@@ -121,28 +121,21 @@ def three_point_parking(px, dir):
         px.forward(50)
         time.sleep(1)
  
-
-    
         px.stop()
         px.set_dir_servo_angle(0)
 
 def line_following(px):
     sensor = Sensor() # px.get_grayscale_data()
-    interpretor = Interpreter(120, "darker") # might adjust these value later
+    interpretor = Interpreter(100, "darker") # might adjust these value later
     controller = Controller(px, 30)
-    # prev_pos = 0
+
 
     try:
         while True:
             adc_val = sensor.read_sensors()
             car_pos, line = interpretor.process(adc_val)
-            # prev_pos = car_pos
             # if no line is detected, pos would be the same so is the steering angle
             controller.drive(car_pos, line)
-
-            # px.forward(30)
-            # time.sleep(0.2)
-            # px.stop()
             
     
     except KeyboardInterrupt:
