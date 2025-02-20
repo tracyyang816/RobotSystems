@@ -6,6 +6,7 @@ class Controller():
         self.px = px
         self.scalar = scalar
         self.no_line = 0
+        self.angle = 0
     
     def drive(self, position, has_line):
         
@@ -16,20 +17,20 @@ class Controller():
 
             position = float(position)
             angle = position * self.scalar
+
+            self.angle = angle
     
 
             if self.no_line > 5:
-                self.px.set_dir_servo_angle(-angle)
-                self.px.forward(30)
-                time.sleep(0.02)
-                self.px.stop()
-            
-            else: 
+                self.angle = -self.angle
                 self.no_line = 0
-                self.px.set_dir_servo_angle(angle)
-                self.px.forward(30)
-                time.sleep(0.02)
-                self.px.stop()
+
+                
+
+            self.px.set_dir_servo_angle(self.angle)
+            self.px.forward(30)
+            time.sleep(0.2)
+            self.px.stop()
             
 
             # angle = 0
