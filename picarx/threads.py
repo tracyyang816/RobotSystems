@@ -59,7 +59,7 @@ def interpreter_function(adc_bus, pos_bus, delay): # consumer_producer
 def handle_exception(future):
     exception = future.exception()
     if exception:
-        print(f"Exception in worker thread: {exception}")
+        print(f"Exception in worker thread: {exception, future}")
         shutdown_event.set()
 
 
