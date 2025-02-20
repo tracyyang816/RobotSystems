@@ -86,7 +86,7 @@ while True:
     lines = cv2.HoughLines(edges, 1, np.pi / 180, 200)
 
 
-    steering_angle = get_steering_angle(lines, img_width=640)
+    steering_angle = get_steering_angle(frame)
     print("streering angle", steering_angle)  # Send this to Picar motor control
         
     px.set_dir_servo_angle(steering_angle)
