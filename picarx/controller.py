@@ -16,10 +16,7 @@ class Controller():
 
             position = float(position)
             angle = position * self.scalar
-            self.px.set_dir_servo_angle(angle)
-            self.px.forward(10)
-            time.sleep(0.02)
-            self.px.stop()
+    
 
             if self.no_line > 5:
                 self.px.set_dir_servo_angle(-angle)
