@@ -51,7 +51,7 @@ px = picarx_improved.Picarx()
 
 
 
-cv2.startWindowThread()
+# cv2.startWindowThread()
 
 while True:
     frame = picam2.capture_array()
@@ -70,11 +70,12 @@ while True:
     px.stop()
 
 
-    cv2.imshow("Edges", edges)
-    cv2.imshow("Camera", frame)
+    # cv2.imshow("Edges", edges)
+    
+    # cv2.imshow("Camera", frame)
     
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
-cv2.destroyAllWindows()
+# cv2.destroyAllWindows()
 picam2.stop()
