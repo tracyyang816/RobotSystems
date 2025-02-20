@@ -56,9 +56,15 @@ class Interpreter():
                 elif min_sensor == 2:
                     position = 1 - min_sensor_val/ (min_sensor_val + sensor_values[1]) 
                 
-            print(sensor_values,min_sensor, position)
+            # print(sensor_values,min_sensor, position)
             self.pos = position
         return position
+
+
+
+
+
+        
         '''
         for i in range(0, 2):
             diff = sensor_values[i] - sensor_values[i+1]
