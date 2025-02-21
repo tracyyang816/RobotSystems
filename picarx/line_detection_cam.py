@@ -63,7 +63,7 @@ while True:
     height, width, _ = frame.shape
 
     # Crop only the lower 1/3 of the frame
-    lower_third = frame[int(height * (1/3)):, :]
+    lower_third = frame[int(height * (2/3)):, :]
 
     gray = cv2.cvtColor(lower_third, cv2.COLOR_BGR2GRAY)
     edges = cv2.Canny(gray, 100, 200)
