@@ -32,7 +32,7 @@ def get_steering_angle(segments, frame):
         lanes.append(np.average(right_fit, axis=0))
 
     if not lanes:
-        return 0
+        return False
 
     slope, intercept = lanes[0]
     y1, y2 = height, int(height / 2)
@@ -51,12 +51,18 @@ picam2.start()
 time.sleep(2)
 
 px = picarx_improved.Picarx()
-px.set_cam_tilt_angle(-35)
+px.set_cam_tilt_angle(-50)
+last_angle = 0
 
 while True:
     frame = picam2.capture_array()
 
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    height, width, _ = frame.shape
+
+    # Crop only the lower 1/3 of the frame
+    lower_third = frame[int(height * (2/3)):, :]
+
+    gray = cv2.cvtColor(lower_third, cv2.COLOR_BGR2GRAY)
     edges = cv2.Canny(gray, 100, 200)
     lines = cv2.HoughLinesP(edges, 1, np.pi / 180, 50, minLineLength=10, maxLineGap=50)
 
@@ -77,11 +83,26 @@ while True:
     #cv2.imshow("Edges", edges)  # Edge detection view
     # cv2.imshow("Lines", lines)
     cv2.imshow("Lane Detection", frame)  # Camera view with detected lanes
+    
+    if steering_angle == False:
+        px.set_dir_servo_angle(0)
+        px.backward(30)
+        time.sleep(0.1)
+        px.stop()
 
-    px.set_dir_servo_angle(steering_angle)
-    px.forward(30)
-    time.sleep(0.1)
-    px.stop()
+        # TEST THIS 
+        px.set_dir_servo_angle(last_angle)
+        px.forward(30)
+        time.sleep(0.1)
+        px.stop()
+
+
+    else: 
+        last_angle = steering_angle
+        px.set_dir_servo_angle(steering_angle)
+        px.forward(30)
+        time.sleep(0.1)
+        px.stop()
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
