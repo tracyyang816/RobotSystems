@@ -87,16 +87,17 @@ while True:
     # cv2.imshow("Lines", lines)
     cv2.imshow("Lane Detection", frame)  # Camera view with detected lanes
     
-    if steering_angle == False:
-        no_line_count += 1
+    
 
     if no_line_count > 5:
-        px.set_dir_servo_angle(random.randint(-30, 30))
+        no_line_count = 0
+        px.set_dir_servo_angle(last_angle)
         px.forward(30)
         time.sleep(0.1)
         px.stop()
 
-
+    if steering_angle == False:
+        no_line_count += 1
     else: 
         last_angle = steering_angle
         px.set_dir_servo_angle(steering_angle)
