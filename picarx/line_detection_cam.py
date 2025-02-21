@@ -90,8 +90,8 @@ while True:
         no_line_count += 1
 
     if no_line_count > 5:
-        px.set_dir_servo_angle(0)
-        px.backward(30)
+        px.set_dir_servo_angle(-last_angle)
+        px.forward(30)
         time.sleep(0.1)
         px.stop()
 
