@@ -80,7 +80,7 @@ while True:
 
     px.set_dir_servo_angle(steering_angle)
     px.forward(30)
-    time.sleep(0.02)
+    time.sleep(0.1)
     px.stop()
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
