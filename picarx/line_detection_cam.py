@@ -73,6 +73,11 @@ while True:
     steering_angle = get_steering_angle(segments, frame)
     print("Steering Angle:", steering_angle)
 
+
+    cv2.imshow("Edges", edges)  # Edge detection view
+    cv2.imshow("Lines", lines)
+    cv2.imshow("Lane Detection", frame)  # Camera view with detected lanes
+
     px.set_dir_servo_angle(steering_angle)
     px.forward(30)
     time.sleep(0.2)
