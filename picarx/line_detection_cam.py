@@ -90,12 +90,6 @@ while True:
         time.sleep(0.1)
         px.stop()
 
-        # TEST THIS 
-        px.set_dir_servo_angle(last_angle)
-        px.forward(30)
-        time.sleep(0.1)
-        px.stop()
-
 
     else: 
         last_angle = steering_angle
