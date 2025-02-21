@@ -20,9 +20,9 @@ def get_steering_angle(segments, frame):
                 continue  # Ignore vertical lines
             slope, intercept = np.polyfit((x1, x2), (y1, y2), 1)
 
-            if slope < 0 and x1 < left_region_boundary and x2 < left_region_boundary:
+            if x1 < left_region_boundary and x2 < left_region_boundary: # slope < 0 and 
                 left_fit.append((slope, intercept))
-            elif slope > 0 and x1 > right_region_boundary and x2 > right_region_boundary:
+            elif x1 > right_region_boundary and x2 > right_region_boundary: # slope > 0 and
                 right_fit.append((slope, intercept))
 
     lanes = []
@@ -53,6 +53,8 @@ time.sleep(2)
 px = picarx_improved.Picarx()
 px.set_cam_tilt_angle(-50)
 last_angle = 0
+
+no_line_count = 0
 
 while True:
     frame = picam2.capture_array()
@@ -85,6 +87,9 @@ while True:
     cv2.imshow("Lane Detection", frame)  # Camera view with detected lanes
     
     if steering_angle == False:
+        no_line_count += 1
+
+    if no_line_count > 5:
         px.set_dir_servo_angle(0)
         px.backward(30)
         time.sleep(0.1)
