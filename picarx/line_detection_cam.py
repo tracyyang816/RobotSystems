@@ -60,7 +60,7 @@ while True:
     height, width, _ = frame.shape
 
     # Crop only the lower 1/3 of the frame
-    lower_third = frame[int(height * (1/3)):, :]
+    lower_third = frame[int(height * (2/3)):, :]
 
     gray = cv2.cvtColor(lower_third, cv2.COLOR_BGR2GRAY)
     edges = cv2.Canny(gray, 100, 200)
@@ -74,9 +74,9 @@ while True:
 
     if segments:
         for (x1, y1, x2, y2) in segments:
-            cv2.line(frame, (x1, y1), (x2, y2), (0, 0, 255), 2)
+            cv2.line(lower_third, (x1, y1), (x2, y2), (0, 0, 255), 2)
 
-    steering_angle = get_steering_angle(segments, frame)
+    steering_angle = get_steering_angle(segments, lower_third)
     print("Steering Angle:", steering_angle)
 
 
