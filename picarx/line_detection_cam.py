@@ -4,6 +4,7 @@ from picamera2 import Picamera2, Preview
 import time
 import picarx_improved
 import math
+import random
 
 def get_steering_angle(segments, frame):
     left_fit = []
@@ -90,7 +91,7 @@ while True:
         no_line_count += 1
 
     if no_line_count > 5:
-        px.set_dir_servo_angle(-last_angle)
+        px.set_dir_servo_angle(random.randint(-30, 30))
         px.forward(30)
         time.sleep(0.1)
         px.stop()
