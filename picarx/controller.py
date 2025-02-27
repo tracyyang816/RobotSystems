@@ -41,3 +41,12 @@ class Controller():
             self.px.stop()
 
         # return angle
+
+class Ultrasonic_Controller():
+
+    def __init__(self, px):
+        self.px = px
+
+    def stop(self, obstacle):
+        if obstacle == 0:
+            self.px.stop()

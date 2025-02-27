@@ -9,6 +9,7 @@ import random
 def get_steering_angle(segments, frame):
     left_fit = []
     right_fit = []
+    center_fit = []
 
     height, width, _ = frame.shape
     boundary = 1 / 3
@@ -17,15 +18,18 @@ def get_steering_angle(segments, frame):
 
     if segments:
         for x1, y1, x2, y2 in segments:
-            if x1 == x2:
-                continue  # Ignore vertical lines
             slope, intercept = np.polyfit((x1, x2), (y1, y2), 1)
 
             if x1 < left_region_boundary and x2 < left_region_boundary: # slope < 0 and 
                 left_fit.append((slope, intercept))
+                return -30
             elif x1 > right_region_boundary and x2 > right_region_boundary: # slope > 0 and
                 right_fit.append((slope, intercept))
-
+                return 30
+            else:
+                center_fit.append((slope, intercept))
+                return 0
+    """
     lanes = []
     if left_fit:
         lanes.append(np.average(left_fit, axis=0))
@@ -33,18 +37,20 @@ def get_steering_angle(segments, frame):
         lanes.append(np.average(right_fit, axis=0))
 
     if not lanes:
-        return False
+        return False"""
 
-    slope, intercept = lanes[0]
+    # lane = np.average(all of the lanes, axis = 0)
+
+    '''
     y1, y2 = height, int(height / 2)
     x1, x2 = int((y1 - intercept) / slope), int((y2 - intercept) / slope)
 
     x_offset = x2 - x1
     y_offset = y2
     angle_to_mid_radian = math.atan(x_offset / y_offset)
-    angle_to_mid_deg = int(angle_to_mid_radian * 180.0 / math.pi)
+    angle_to_mid_deg = int(angle_to_mid_radian * 180.0 / math.pi)'''
 
-    return angle_to_mid_deg 
+    # return angle_to_mid_deg 
 
 picam2 = Picamera2()
 picam2.configure(picam2.create_preview_configuration(main={"format": 'XRGB8888', "size": (640, 480)}))

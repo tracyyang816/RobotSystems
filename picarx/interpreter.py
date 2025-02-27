@@ -54,51 +54,18 @@ class Interpreter():
                 
                 elif min_sensor == 2:
                     position = 1 - min_sensor_val/ (min_sensor_val + sensor_values[1]) 
-                
-            # print(sensor_values,min_sensor, position)
+     
             self.pos = position
         return position, line
 
 
 
-
-
-
-        '''
-        for i in range(0, 2):
-            diff = sensor_values[i] - sensor_values[i+1]
-
-            rising_edge = None
-            falling_edge = None
-
-            if self.polarity == "darker":
-                if diff < -self.sensitivity: 
-                    rising_edge = i
-                if diff > self.sensitivity:
-                    falling_edge = i
-
-            if self.polarity == "lighter":
-                if diff < -self.sensitivity: 
-                    falling_edge = i
-                if diff > self.sensitivity:
-                    rising_edge = i
-        
-        if rising_edge == 0 and falling_edge == 1:
-            position = 0
-
-        elif falling_edge == 0: # car is on the right 
-            position = -1.0 
-        elif rising_edge == 0:
-            position = 0.5
-        elif rising_edge == 1: # car is on the left 
-            position = 1.0 
-        elif falling_edge == 1:
-            position = -0.5
+class Ultrasonic_Interpreter():
+    def __init__(self, distance):
+        self.distance = distance
+    
+    def process(self):
+        if self.distance < 3:
+            return 0
         else:
-            position = None
-
-        print(rising_edge, position)
-        return position
-        '''
-
-
+            return 1

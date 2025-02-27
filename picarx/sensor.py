@@ -1,5 +1,7 @@
 from robot_hat import ADC
+from robot_hat import Ultrasonic
 from threading import Lock
+
 
 
 class Sensor():
@@ -12,3 +14,11 @@ class Sensor():
     def read_sensors(self):
         return [adc.read() for adc in self.adcs]
 
+
+class Ultrasonic_Sensor():
+
+    def __init__(self, trig, echo):
+        self.us = Ultrasonic(trig, echo, timeout=0.02)
+    
+    def read(self):
+        return self.us._read()
