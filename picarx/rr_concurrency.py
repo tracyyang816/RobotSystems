@@ -101,9 +101,9 @@ def handle_exception(future):
 
 
 if __name__ == "__main__":
-    cam_interpreter = ConsumerProducer(interpreter_function, sensor_values_bus, interpreter_bus)
-    cam_sensor = Producer(sensor_function, sensor_values_bus)
-    cam_controller = Consumer(controller_function, interpreter_bus)
+    cam_interpreter = ConsumerProducer(interpreter_function, sensor_values_bus, interpreter_bus, 0.5)
+    cam_sensor = Producer(sensor_function, sensor_values_bus, 0.5 )
+    cam_controller = Consumer(controller_function, interpreter_bus, 1)
 
     terminationTimer = rr.Timer(
         bTerminate,  # Output data bus
@@ -114,9 +114,9 @@ if __name__ == "__main__":
 
 
 
-    us_interpreter = ConsumerProducer(us_interpreter_function, us_distance_bus, us_interpreter_bus)
-    us_sensor = Producer(us_sensor_function, us_distance_bus)
-    us_controller = Consumer(us_controller_function, us_interpreter_bus)
+    us_interpreter = ConsumerProducer(us_interpreter_function, us_distance_bus, us_interpreter_bus, 0.5)
+    us_sensor = Producer(us_sensor_function, us_distance_bus, 0.5)
+    us_controller = Consumer(us_controller_function, us_interpreter_bus, 1)
 
     producer_consumer_list = [cam_interpreter, cam_sensor, cam_controller, us_interpreter, us_sensor, us_controller, terminationTimer]
 
