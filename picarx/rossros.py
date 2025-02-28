@@ -26,9 +26,9 @@ class Bus:
         # Set up the class so that functions can get a lock while working
         self.lock = rwlock.RWLockFairD()
 
-    @log_on_start(DEBUG, "{self.name:s}: Initiating read by {_name:s}")
-    @log_on_error(DEBUG, "{self.name:s}: Error on read by {_name:s}")
-    @log_on_end(DEBUG, "{self.name:s}: Finished read by {_name:s}")
+    # @log_on_start(DEBUG, "{self.name:s}: Initiating read by {_name:s}")
+    # @log_on_error(DEBUG, "{self.name:s}: Error on read by {_name:s}")
+    # @log_on_end(DEBUG, "{self.name:s}: Finished read by {_name:s}")
     def get_message(self, _name='Unspecified function'):
 
         with self.lock.gen_rlock():
