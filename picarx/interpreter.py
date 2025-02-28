@@ -53,8 +53,10 @@ class Interpreter():
                     position = 0
                 
                 elif min_sensor == 0:
-                    print(sensor_values, "debug", flush = True)
-                    position = min_sensor_val/ (min_sensor_val + sensor_values[1]) - 1
+                    try:
+                        position = min_sensor_val/ (min_sensor_val + sensor_values[1]) - 1
+                    except AttributeError:
+                        position = 0
                 
                 elif min_sensor == 2:
                     position = 1 - min_sensor_val/ (min_sensor_val + sensor_values[1]) 
