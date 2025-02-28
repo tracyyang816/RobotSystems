@@ -53,7 +53,7 @@ class Interpreter():
                     position = 0
                 
                 elif min_sensor == 0:
-                    print(sensor_values, "debug")
+                    print(sensor_values, "debug", flush = True)
                     position = min_sensor_val/ (min_sensor_val + sensor_values[1]) - 1
                 
                 elif min_sensor == 2:
