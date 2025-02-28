@@ -101,22 +101,61 @@ def handle_exception(future):
 
 
 if __name__ == "__main__":
-    cam_interpreter = ConsumerProducer(interpreter_function, sensor_values_bus, interpreter_bus, 0.5)
-    cam_sensor = Producer(sensor_function, sensor_values_bus, 0.5 )
-    cam_controller = Consumer(controller_function, interpreter_bus, 1)
 
-    terminationTimer = rr.Timer(
+    terminationTimer = Timer(
         bTerminate,  # Output data bus
         3,  # Duration
         0.01,  # Delay between checking for termination time
         bTerminate,  # Bus to check for termination signal
         "Termination timer")  # Name of this timer
 
+    cam_interpreter = ConsumerProducer(
+        interpreter_function, 
+        sensor_values_bus, 
+        interpreter_bus, 
+        0.5,
+        bTerminate,
+        "cam interpreter")
 
 
-    us_interpreter = ConsumerProducer(us_interpreter_function, us_distance_bus, us_interpreter_bus, 0.5)
-    us_sensor = Producer(us_sensor_function, us_distance_bus, 0.5)
-    us_controller = Consumer(us_controller_function, us_interpreter_bus, 1)
+
+    cam_sensor = Producer(
+        sensor_function, 
+        sensor_values_bus, 
+        0.5,
+        bTerminate,
+        "cam sensor")
+
+    cam_controller = Consumer(
+        controller_function, 
+        interpreter_bus, 
+        1, 
+        bTerminate,
+        "camera drive controller")
+
+
+
+    us_interpreter = ConsumerProducer(
+        us_interpreter_function, 
+        us_distance_bus, 
+        us_interpreter_bus, 
+        0.5,
+        bTerminate,
+        "ultrasonic interpreter")
+
+    us_sensor = Producer(
+        us_sensor_function, 
+        us_distance_bus, 
+        0.5,
+        bTerminate,
+        "ultrasonic sensor")
+
+    us_controller = Consumer(
+        us_controller_function, 
+        us_interpreter_bus, 
+        1,
+        bTerminate,
+        "ultrasonic stop controller")
 
     producer_consumer_list = [cam_interpreter, cam_sensor, cam_controller, us_interpreter, us_sensor, us_controller, terminationTimer]
 
