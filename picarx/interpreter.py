@@ -13,7 +13,7 @@ class Interpreter():
     def process(self, sensor_values): # sensor_vals is a list of 3 adc values
 
         if not isinstance(sensor_values, list):
-            return 0, False
+            return 0
 
         # if sensor_values == 0 or sensor_values == "0":
         #     position = 0
@@ -25,7 +25,7 @@ class Interpreter():
                 line = True
 
         if line == False:
-            position = self.pos
+            position = -2
 
         else: 
         
@@ -59,7 +59,7 @@ class Interpreter():
                     position = 1 - min_sensor_val/ (min_sensor_val + sensor_values[1]) 
      
             self.pos = position
-        return position, line
+        return position
 
 
 

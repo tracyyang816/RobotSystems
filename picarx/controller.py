@@ -8,9 +8,8 @@ class Controller():
         self.no_line = 0
         self.angle = 0
     
-    def drive(self, position, has_line):
-        
-        if has_line == False:
+    def drive(self, position):
+        if position < -1:
 
             self.px.set_dir_servo_angle(self.angle)
             self.no_line += 1
