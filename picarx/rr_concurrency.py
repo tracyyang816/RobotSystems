@@ -40,9 +40,13 @@ def cam_sensor_function(): # producer
     return adc_val
     
     
-def cam_controller_function(pos): # consumer 
-    print("camera controller driving")
-    controller.drive(pos)
+def cam_controller_function(pos, stop): # consumer 
+    if stop == 0:
+        print("camera controller stopped")
+        pass
+    else:
+        print("camera controller driving")
+        controller.drive(pos)
 
 
 def cam_interpreter_function(adc_val): # consumer_producer
@@ -107,7 +111,7 @@ if __name__ == "__main__":
 
     cam_controller = Consumer(
         cam_controller_function, 
-        (interpreter_bus), 
+        (interpreter_bus, us_interpreter_bus), 
         1, 
         bTerminate,
         "camera drive controller")
