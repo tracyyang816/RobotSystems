@@ -61,11 +61,11 @@ class Interpreter():
 
 
 class Ultrasonic_Interpreter():
-    def __init__(self, distance):
-        self.distance = distance
+    def __init__(self):
+        pass
     
-    def process(self):
-        if self.distance < 3:
+    def process(self, distance):
+        if distance < 3:
             return 0
         else:
             return 1
