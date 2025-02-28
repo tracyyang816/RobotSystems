@@ -40,9 +40,9 @@ def cam_sensor_function(): # producer
     return adc_val
     
     
-def cam_controller_function(pos): # consumer 
+def cam_controller_function(pos, has_line): # consumer 
     print("camera controller driving")
-    controller.drive(pos)
+    controller.drive(pos, has_line)
 
 
 def cam_interpreter_function(adc_val): # consumer_producer
