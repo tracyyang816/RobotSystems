@@ -12,7 +12,7 @@ class Sensor():
 
     
     def read_sensors(self):
-        print(adc.read() for adc in self.adcs)
+        print([adc.read() for adc in self.adcs])
         return [adc.read() for adc in self.adcs]
 
 
