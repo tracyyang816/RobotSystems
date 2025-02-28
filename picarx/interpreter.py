@@ -13,12 +13,10 @@ class Interpreter():
     def process(self, sensor_values): # sensor_vals is a list of 3 adc values
 
         if not isinstance(sensor_values, list):
-            raise TypeError(f"Expected list, got {type(sensor_values)}: {sensor_values}")
+            return 0
 
         if sensor_values == 0 or sensor_values == "0":
             position = 0
-
-
 
         line = False
         for i in range(0, 2):
