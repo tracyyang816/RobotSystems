@@ -17,8 +17,8 @@ class Sensor():
 
 class Ultrasonic_Sensor():
 
-    def __init__(self, trig, echo):
-        self.us = Ultrasonic(trig, echo, timeout=0.02)
+    def __init__(self, px):
+        self.us = px.ultrasonic()
     
     def read(self):
-        return self.us._read()
+        return self.us.read()

@@ -62,7 +62,7 @@ def interpreter_function(adc_bus, pos_bus, delay): # consumer_producer
 
 
 # Ultrasonic Stuff
-us_sensor = Ultrasonic_Sensor()
+us_sensor = Ultrasonic_Sensor(px)
 us_interpreter = Ultrasonic_Interpreter()
 us_controller = Ultrasonic_Controller(px)
 
