@@ -40,15 +40,13 @@ def cam_sensor_function(): # producer
     return adc_val
     
     
-def cam_controller_function(pos_bus): # consumer 
+def cam_controller_function(pos): # consumer 
     print("camera controller driving")
-    pos = pos_bus.read()
     controller.drive(pos)
 
 
-def cam_interpreter_function(adc_bus): # consumer_producer
+def cam_interpreter_function(adc_val): # consumer_producer
     print("camera interpreter read and write")
-    adc_val = adc_bus.read()
     pos = interpreter.process(adc_val)
     return pos
 
@@ -70,17 +68,14 @@ def us_sensor_function(): # producer
 
     
     
-def us_controller_function(us_bus): # consumer 
+def us_controller_function(stop_signal): # consumer 
     print("ultrasonic controller driving")
-    stop_signal = us_bus.read()
     us_controller.stop(stop_signal)
 
 
 
-def us_interpreter_function(dist_bus): # consumer_producer
-
+def us_interpreter_function(dist): # consumer_producer
     print("interpreter read and write")
-    dist = dist_bus.read()
     stop_signal = us_interpreter.process(dist)
     return stop_signal
 
