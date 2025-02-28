@@ -47,7 +47,7 @@ def cam_controller_function(pos, has_line): # consumer
 
 def cam_interpreter_function(adc_val): # consumer_producer
     print("camera interpreter read and write")
-    pos = interpreter.process(adc_val)
+    pos, has_line = interpreter.process(adc_val)
     return pos
 
 
