@@ -14,6 +14,8 @@ class Interpreter():
 
         if sensor_values == 0 or sensor_values == "0":
             position = 0
+        
+        print(sensor_values)
 
         line = False
         for i in range(0, 2):
