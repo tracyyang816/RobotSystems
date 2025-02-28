@@ -73,7 +73,6 @@ def us_controller_function(stop_signal): # consumer
     us_controller.stop(stop_signal)
 
 
-
 def us_interpreter_function(dist): # consumer_producer
     print("interpreter read and write")
     stop_signal = us_interpreter.process(dist)
@@ -92,7 +91,7 @@ if __name__ == "__main__":
 
     cam_interpreter = ConsumerProducer(
         cam_interpreter_function, 
-        sensor_values_bus, 
+        (sensor_values_bus), 
         interpreter_bus, 
         0.5,
         bTerminate,
@@ -108,7 +107,7 @@ if __name__ == "__main__":
 
     cam_controller = Consumer(
         cam_controller_function, 
-        interpreter_bus, 
+        (interpreter_bus), 
         1, 
         bTerminate,
         "camera drive controller")
@@ -117,7 +116,7 @@ if __name__ == "__main__":
 
     us_interpreter = ConsumerProducer(
         us_interpreter_function, 
-        us_distance_bus, 
+        (us_distance_bus), 
         us_interpreter_bus, 
         0.5,
         bTerminate,
@@ -132,7 +131,7 @@ if __name__ == "__main__":
 
     us_controller = Consumer(
         us_controller_function, 
-        us_interpreter_bus, 
+        (us_interpreter_bus), 
         1,
         bTerminate,
         "ultrasonic stop controller")
