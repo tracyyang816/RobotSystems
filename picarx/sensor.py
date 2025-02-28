@@ -21,4 +21,4 @@ class Ultrasonic_Sensor():
         self.px = px
     
     def read(self):
-        return self.px.ultrasonic().read()
+        return self.px.ultrasonic.read()
