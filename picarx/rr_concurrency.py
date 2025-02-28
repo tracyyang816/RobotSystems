@@ -34,29 +34,23 @@ shutdown_event = Event()
 
 bTerminate = Bus(0, "Termination Bus")
 
-def cam_sensor_function(adc_bus, delay): # producer
-    while not shutdown_event.is_set():
-        print("sensor reading")
-        adc_val = sensor.read_sensors()
-        adc_bus.write(adc_val)
-        time.sleep(delay)
+def cam_sensor_function(): # producer
+    print("camera sensor reading")
+    adc_val = sensor.read_sensors()
+    return adc_val
     
     
-def cam_controller_function(pos_bus, delay): # consumer 
-    while not shutdown_event.is_set():
-        print("controller driving")
-        pos = pos_bus.read()
-        controller.drive(pos)
-        time.sleep(delay)
+def cam_controller_function(pos_bus): # consumer 
+    print("camera controller driving")
+    pos = pos_bus.read()
+    controller.drive(pos)
 
 
-def cam_interpreter_function(adc_bus, pos_bus, delay): # consumer_producer
-    while not shutdown_event.is_set():
-        print("interpreter read and write")
-        adc_val = adc_bus.read()
-        pos = interpreter.process(adc_val)
-        pos_bus.write(pos)
-        time.sleep(delay)
+def cam_interpreter_function(adc_bus): # consumer_producer
+    print("camera interpreter read and write")
+    adc_val = adc_bus.read()
+    pos = interpreter.process(adc_val)
+    return pos
 
 
 
@@ -69,35 +63,27 @@ us_controller = Ultrasonic_Controller(px)
 us_distance_bus = Bus()
 us_interpreter_bus = Bus()
 
-def us_sensor_function(dist_bus, delay): # producer
-    while not shutdown_event.is_set():
-        print("ultrasonic sensor reading")
-        distance = us_sensor.read()
-        dist_bus.write(distance)
-        time.sleep(delay)
+def us_sensor_function(): # producer
+    print("ultrasonic sensor reading")
+    distance = us_sensor.read()
+    return distance
+
     
     
-def us_controller_function(us_bus, delay): # consumer 
-    while not shutdown_event.is_set():
-        print("ultrasonic controller driving")
-        stop_signal = us_bus.read()
-        us_controller.stop(stop_signal)
-        time.sleep(delay)
+def us_controller_function(us_bus): # consumer 
+    print("ultrasonic controller driving")
+    stop_signal = us_bus.read()
+    us_controller.stop(stop_signal)
 
 
-def us_interpreter_function(dist_bus, us_bus, delay): # consumer_producer
-    while not shutdown_event.is_set():
-        print("interpreter read and write")
-        dist = dist_bus.read()
-        stop_signal = us_interpreter.process(dist)
-        us_bus.write(stop_signal)
-        time.sleep(delay)
 
-def handle_exception(future):
-    exception = future.exception()
-    if exception:
-        print(f"Exception in worker thread: {exception, future}")
-        shutdown_event.set()
+def us_interpreter_function(dist_bus): # consumer_producer
+
+    print("interpreter read and write")
+    dist = dist_bus.read()
+    stop_signal = us_interpreter.process(dist)
+    return stop_signal
+
 
 
 if __name__ == "__main__":
@@ -116,7 +102,6 @@ if __name__ == "__main__":
         0.5,
         bTerminate,
         "cam interpreter")
-
 
 
     cam_sensor = Producer(
@@ -162,9 +147,5 @@ if __name__ == "__main__":
 # Execute the list of producer-consumers concurrently
 
 
-try:
-    rr.runConcurrently(producer_consumer_list)
-except KeyboardInterrupt:
-    print("Shutting down")
-    shutdown_event.set()
-    time.sleep(1)
+
+rr.runConcurrently(producer_consumer_list)
