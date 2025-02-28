@@ -34,7 +34,7 @@ shutdown_event = Event()
 
 bTerminate = Bus(0, "Termination Bus")
 
-def sensor_function(adc_bus, delay): # producer
+def cam_sensor_function(adc_bus, delay): # producer
     while not shutdown_event.is_set():
         print("sensor reading")
         adc_val = sensor.read_sensors()
@@ -42,7 +42,7 @@ def sensor_function(adc_bus, delay): # producer
         time.sleep(delay)
     
     
-def controller_function(pos_bus, delay): # consumer 
+def cam_controller_function(pos_bus, delay): # consumer 
     while not shutdown_event.is_set():
         print("controller driving")
         pos = pos_bus.read()
@@ -50,7 +50,7 @@ def controller_function(pos_bus, delay): # consumer
         time.sleep(delay)
 
 
-def interpreter_function(adc_bus, pos_bus, delay): # consumer_producer
+def cam_interpreter_function(adc_bus, pos_bus, delay): # consumer_producer
     while not shutdown_event.is_set():
         print("interpreter read and write")
         adc_val = adc_bus.read()
@@ -110,7 +110,7 @@ if __name__ == "__main__":
         "Termination timer")  # Name of this timer
 
     cam_interpreter = ConsumerProducer(
-        interpreter_function, 
+        cam_interpreter_function, 
         sensor_values_bus, 
         interpreter_bus, 
         0.5,
@@ -120,14 +120,14 @@ if __name__ == "__main__":
 
 
     cam_sensor = Producer(
-        sensor_function, 
+        cam_sensor_function, 
         sensor_values_bus, 
         0.5,
         bTerminate,
         "cam sensor")
 
     cam_controller = Consumer(
-        controller_function, 
+        cam_controller_function, 
         interpreter_bus, 
         1, 
         bTerminate,
