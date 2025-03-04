@@ -71,7 +71,7 @@ class Ultrasonic_Interpreter():
         pass
     
     def process(self, distance):
-        if distance < 3:
+        if distance < 3 and distance > 0:
             return 0
         else:
             return 1
