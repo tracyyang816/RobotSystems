@@ -122,6 +122,7 @@ class LineFollowerWithCamera:
                 # Move the car forward at a constant speed
                 self.car.forward(30)  # Speed can be increased if necessary
                 time.sleep(0.05)
+                self.car.stop()
 
         except KeyboardInterrupt:
             logging.info("Line following stopped.")
