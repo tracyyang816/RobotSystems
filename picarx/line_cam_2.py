@@ -120,7 +120,7 @@ class LineFollowerWithCamera:
                 self.set_turn_proportion(error)
 
                 # Move the car forward at a constant speed
-                self.car.forward(20)  # Speed can be increased if necessary
+                self.car.forward(30)  # Speed can be increased if necessary
                 time.sleep(0.05)
 
         except KeyboardInterrupt:

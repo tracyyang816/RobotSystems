@@ -91,7 +91,7 @@ while True:
 
     #cv2.imshow("Edges", edges)  # Edge detection view
     # cv2.imshow("Lines", lines)
-    cv2.imshow("Lane Detection", frame)  # Camera view with detected lanes
+    #cv2.imshow("Lane Detection", frame)  # Camera view with detected lanes
     
     
 
