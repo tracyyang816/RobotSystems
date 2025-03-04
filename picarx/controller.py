@@ -26,8 +26,8 @@ class Controller():
                 angle = random.randint(-30, 30)
                 self.px.set_dir_servo_angle(angle)
                 self.px.forward(30)
-                time.sleep(0.2)
-                self.px.stop()
+                time.sleep(0.05)
+               
             
         else:
             position = float(position)
@@ -36,8 +36,8 @@ class Controller():
             self.angle = angle
         
             self.px.forward(30)
-            time.sleep(0.2)
-            self.px.stop()
+            time.sleep(0.05)
+           
 
         # return angle
 
